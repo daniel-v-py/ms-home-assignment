@@ -1,0 +1,47 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+            "value": "westeurope"
+        }, 
+        "vmCount":{
+            "value": 1
+        },
+        "vmNameprefix": {
+            "value": "myfirstVMtemplate-"
+        },
+        "vmSize": {
+            "value": "Standard_D2s_v3"
+        },
+        "storageAccountType": {
+            "value": "Standard_LRS"
+        },
+        "adminUsername": {
+            "value": "myusername"
+        },
+        "adminPassword": {
+            "value": "myPass@wordforUsername231"
+        },
+        "nicName": {
+            "value": "myvmNIC-"
+        },
+        "virtualNetworkName": {
+            "value": "myTemplateNetworkName-01"
+        },
+        "subnetName": {
+            "value": "mytemplatSubnetName-01"
+        },
+        "addressPrefixes": {
+            "value": [
+                "10.0.0.0/16"
+            ]
+        },
+        "subnetAddressPrefixes": {
+            "value": "10.0.0.0/24"
+        },
+        "publicIPAddressNamePrefix": {
+            "value": "mypublicIPname-"
+        }
+    }
+}

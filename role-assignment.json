@@ -1,0 +1,46 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "vmName": {
+      "type": "string",
+      "metadata": {
+        "description": "The full name of the Virtual Machine to assign roles to."
+      }
+    },
+    "storageAccount1Name": {
+      "type": "string",
+      "metadata": {
+        "description": "The name of the first Storage Account."
+      }
+    },
+    "storageAccount2Name": {
+      "type": "string",
+      "metadata": {
+        "description": "The name of the second Storage Account."
+      }
+    }
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Storage/storageAccounts/providers/roleAssignments",
+      "apiVersion": "2022-04-01",
+      "name": "[concat(parameters('storageAccount1Name'), '/Microsoft.Authorization/', guid(resourceGroup().id, parameters('vmName'), parameters('storageAccount1Name'), 'StorageBlobDataContributor'))]",
+      "properties": {
+        "roleDefinitionId": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', 'ba92f5b4-2d11-453d-a403-e96b0029c9fe')]",
+        "principalId": "[reference(resourceId('Microsoft.Compute/virtualMachines', parameters('vmName')), '2024-03-01', 'full').identity.principalId]",
+        "principalType": "ServicePrincipal"
+      }
+    },
+    {
+      "type": "Microsoft.Storage/storageAccounts/providers/roleAssignments",
+      "apiVersion": "2022-04-01",
+      "name": "[concat(parameters('storageAccount2Name'), '/Microsoft.Authorization/', guid(resourceGroup().id, parameters('vmName'), parameters('storageAccount2Name'), 'StorageBlobDataContributor'))]",
+        "properties": {
+        "roleDefinitionId": "[subscriptionResourceId('Microsoft.Authorization/roleDefinitions', 'ba92f5b4-2d11-453d-a403-e96b0029c9fe')]",
+        "principalId": "[reference(resourceId('Microsoft.Compute/virtualMachines', parameters('vmName')), '2024-03-01', 'full').identity.principalId]",
+        "principalType": "ServicePrincipal"
+    }
+    }
+  ]
+}

@@ -1,0 +1,161 @@
+trigger:
+- main
+
+pool:
+  name: myagentpool # Make sure this agent pool exists and agents are online
+  vmImage: ubuntu-latest # This image is used for the DevOps agent, not the VM deployed
+
+stages:
+- stage: DeployStorage
+  displayName: 'Deploy storage accounts'
+  jobs:
+  - job: DeployStorageBash
+    displayName: 'Deploy storage with bash'
+    steps:
+      - bash: |
+            DEPLOYMENT_OUTPUT=$(az deployment group create \
+              --resource-group myDVresourceGroup \
+              --template-file deployments/storage.json \
+              --parameters @deployments/storageparameters.json \
+              --name storagedeployment-$BUILD_BUILDID \
+              --query "properties.outputs" \
+              -o json)
+
+            # Check if deployment output is valid JSON
+            if ! echo "$DEPLOYMENT_OUTPUT" | jq empty; then
+              echo "Error: Deployment output is not valid JSON."
+              echo "$DEPLOYMENT_OUTPUT"
+              exit 1
+            fi
+
+            STORAGE_ACCOUNT1=$(echo "$DEPLOYMENT_OUTPUT" | jq -r '.storageAccount1Name.value // empty')
+            STORAGE_ACCOUNT2=$(echo "$DEPLOYMENT_OUTPUT" | jq -r '.storageAccount2Name.value // empty')
+
+            if [ -z "$STORAGE_ACCOUNT1" ] || [ "$STORAGE_ACCOUNT1" == "null" ]; then
+               echo "Error: Failed to retrieve storageAccount1Name from deployment output."
+               echo "$DEPLOYMENT_OUTPUT"
+               exit 1
+            fi
+            if [ -z "$STORAGE_ACCOUNT2" ] || [ "$STORAGE_ACCOUNT2" == "null" ]; then
+               echo "Error: Failed to retrieve storageAccount2Name from deployment output."
+               echo "$DEPLOYMENT_OUTPUT"
+               exit 1
+            fi
+
+            echo "##vso[task.setvariable variable=storageAccount1;isOutput=true]$STORAGE_ACCOUNT1"
+            echo "##vso[task.setvariable variable=storageAccount2;isOutput=true]$STORAGE_ACCOUNT2"
+
+            echo "Storage Account 1 : $STORAGE_ACCOUNT1"
+            echo "Storage Account 2 : $STORAGE_ACCOUNT2"
+        env:
+          AZURE_DEVOPS_EXT_PAT: $(System.Accesstoken)
+        name: DeployStorageBashStep
+
+- stage: DeployVM
+  dependsOn: DeployStorage
+  condition: succeeded()
+  # Correctly reference outputs from the specific step within the job
+  variables:
+    storageAccount1: $[ stageDependencies.DeployStorage.DeployStorageBash.outputs['DeployStorageBashStep.storageAccount1'] ]
+    storageAccount2: $[ stageDependencies.DeployStorage.DeployStorageBash.outputs['DeployStorageBashStep.storageAccount2'] ]
+  jobs:
+  - job: DeployVirtualMachine
+    displayName: 'Deploy VM w bash'
+    steps:
+      - bash: |
+          echo "Deploying VM with Storage Account 1: $(storageAccount1)"
+          echo "Deploying VM with Storage Account 2: $(storageAccount2)"
+          az deployment group create \
+           --resource-group myDVresourceGroup \
+           --template-file deployments/firstvm.json \
+           --parameters @deployments/firstvmparameters.json \
+           --parameters storageAccount1Name='$(storageAccount1)' storageAccount2Name='$(storageAccount2)' \
+           --name firstvmdeployment-$BUILD_BUILDID
+        env:
+          AZURE_DEVOPS_EXT_PAT: $(System.Accesstoken)
+        displayName: 'Deploy Virtual Machine'
+
+- stage: AssignRoles
+  dependsOn:
+    - DeployStorage
+    - DeployVM
+  condition: succeeded()
+  variables:
+    # Correctly reference outputs from the specific step within the job
+    sa1: $[ stageDependencies.DeployStorage.DeployStorageBash.outputs['DeployStorageBashStep.storageAccount1'] ]
+    sa2: $[ stageDependencies.DeployStorage.DeployStorageBash.outputs['DeployStorageBashStep.storageAccount2'] ]
+    # Assuming vmNameprefix and vmCount result in 'myfirstVMtemplate-1'
+    vmName: 'myfirstVMtemplate-1'
+  jobs:
+  - job: RoleAssignments
+    displayName: 'Assign Roles to VM Managed Identity'
+    steps:
+      - bash: |
+          echo "Assigning roles to VM $(vmName) for Storage Account 1: $(sa1)"
+          echo "Assigning roles to VM $(vmName) for Storage Account 2: $(sa2)"
+
+          # Add a check to ensure VM exists before assigning roles
+          echo "Checking if VM $(vmName) exists..."
+          az vm show --resource-group myDVresourceGroup --name "$(vmName)" --query name -o tsv
+          if [ $? -ne 0 ]; then
+            echo "Error: VM $(vmName) not found. Cannot assign roles."
+            exit 1
+          fi
+          echo "VM $(vmName) found."
+
+          az deployment group create \
+            --resource-group myDVresourceGroup \
+            --template-file deployments/role-assignment.json \
+            --parameters vmName='$(vmName)' storageAccount1Name='$(sa1)' storageAccount2Name='$(sa2)' \
+            --name roleassignmentdeployment-$BUILD_BUILDID
+
+          echo "Role assignment deployment submitted."
+          echo "sleeping for 3 minutes"
+          sleep 3m
+        env:
+          AZURE_DEVOPS_EXT_PAT: $(System.Accesstoken)
+        displayName: 'Create Role Assignment Deployment'
+
+
+- stage: RunBlobScript
+  dependsOn:
+    - DeployStorage
+    - AssignRoles
+  condition: succeeded()
+  variables:
+    sa1: $[ stageDependencies.DeployStorage.DeployStorageBash.outputs['DeployStorageBashStep.storageAccount1'] ]
+    sa2: $[ stageDependencies.DeployStorage.DeployStorageBash.outputs['DeployStorageBashStep.storageAccount2'] ]
+    vmName: 'myfirstVMtemplate-1'
+  jobs:
+  - job: ExecuteBlobScript
+    displayName: 'Execute Blob Script on VM'
+    steps:
+      - bash: |
+          echo "Executing script on VM $(vmName) with SA1=$(sa1) SA2=$(sa2)"
+
+          # Prepare the script content securely
+          # Read script, escape special characters for JSON embedding if needed,
+          # or consider uploading the script to the VM first if it gets complex.
+          # Using direct embedding for simplicity here, ensure 'newblob.sh' handles shell variables correctly.
+          SCRIPT_CONTENT=$(cat deployments/newblob.sh)
+
+          # Ensure script content is not empty
+          if [ -z "$SCRIPT_CONTENT" ]; then
+            echo "Error: Script content is empty."
+            exit 1
+          fi
+
+          # Use az vm run-command invoke
+          # Pass storage account names as parameters to the script environment
+          az vm run-command invoke \
+            --resource-group myDVresourceGroup \
+            --name "$(vmName)" \
+            --command-id RunShellScript \
+            --scripts "$SCRIPT_CONTENT" \
+            --parameters "SA1=$(sa1)" "SA2=$(sa2)"
+
+          echo "Script execution command sent."
+        displayName: 'Run newblob.sh on VM'
+        env:
+          AZURE_DEVOPS_EXT_PAT: $(System.Accesstoken)
+

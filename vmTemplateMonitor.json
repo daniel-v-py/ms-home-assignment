@@ -1,0 +1,651 @@
+{
+  "properties": {
+    "lenses": [
+      {
+        "order": 0,
+        "parts": [
+          {
+            "position": {
+              "x": 0,
+              "y": 0,
+              "colSpan": 5,
+              "rowSpan": 3
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "options",
+                  "value": {
+                    "chart": {
+                      "metrics": [
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/d54aa1f8-fb70-44e1-bd0c-d18417c39a0e/resourceGroups/myDVresourceGroup/providers/Microsoft.Compute/virtualMachines/myfirstVMtemplate-1"
+                          },
+                          "name": "Percentage CPU",
+                          "aggregationType": 4,
+                          "metricVisualization": {
+                            "resourceDisplayName": "myfirstvmtemplate-1"
+                          }
+                        }
+                      ],
+                      "title": "CPU (average)",
+                      "titleKind": 2,
+                      "visualization": {
+                        "chartType": 2
+                      },
+                      "openBladeOnClick": {
+                        "openBlade": true
+                      }
+                    }
+                  },
+                  "isOptional": true
+                },
+                {
+                  "name": "sharedTimeRange",
+                  "isOptional": true
+                }
+              ],
+              "type": "Extension/HubsExtension/PartType/MonitorChartPart",
+              "settings": {
+                "content": {
+                  "options": {
+                    "chart": {
+                      "metrics": [
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/d54aa1f8-fb70-44e1-bd0c-d18417c39a0e/resourceGroups/myDVresourceGroup/providers/Microsoft.Compute/virtualMachines/myfirstVMtemplate-1"
+                          },
+                          "name": "Percentage CPU",
+                          "aggregationType": 4,
+                          "metricVisualization": {
+                            "resourceDisplayName": "myfirstvmtemplate-1"
+                          }
+                        }
+                      ],
+                      "title": "CPU (average)",
+                      "titleKind": 2,
+                      "visualization": {
+                        "chartType": 2,
+                        "disablePinning": true
+                      },
+                      "openBladeOnClick": {
+                        "openBlade": true
+                      }
+                    }
+                  }
+                }
+              },
+              "filters": {
+                "MsPortalFx_TimeRange": {
+                  "model": {
+                    "format": "local",
+                    "granularity": "auto",
+                    "relative": "1440m"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "position": {
+              "x": 5,
+              "y": 0,
+              "colSpan": 5,
+              "rowSpan": 3
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "options",
+                  "value": {
+                    "chart": {
+                      "metrics": [
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/d54aa1f8-fb70-44e1-bd0c-d18417c39a0e/resourceGroups/myDVresourceGroup/providers/Microsoft.Compute/virtualMachines/myfirstVMtemplate-1"
+                          },
+                          "name": "Disk Read Bytes",
+                          "aggregationType": 1,
+                          "metricVisualization": {
+                            "resourceDisplayName": "myfirstvmtemplate-1"
+                          }
+                        },
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/d54aa1f8-fb70-44e1-bd0c-d18417c39a0e/resourceGroups/myDVresourceGroup/providers/Microsoft.Compute/virtualMachines/myfirstVMtemplate-1"
+                          },
+                          "name": "Disk Write Bytes",
+                          "aggregationType": 1,
+                          "metricVisualization": {
+                            "resourceDisplayName": "myfirstvmtemplate-1"
+                          }
+                        }
+                      ],
+                      "title": "Disk bytes (total)",
+                      "titleKind": 2,
+                      "visualization": {
+                        "chartType": 2
+                      },
+                      "openBladeOnClick": {
+                        "openBlade": true
+                      }
+                    }
+                  },
+                  "isOptional": true
+                },
+                {
+                  "name": "sharedTimeRange",
+                  "isOptional": true
+                }
+              ],
+              "type": "Extension/HubsExtension/PartType/MonitorChartPart",
+              "settings": {
+                "content": {
+                  "options": {
+                    "chart": {
+                      "metrics": [
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/d54aa1f8-fb70-44e1-bd0c-d18417c39a0e/resourceGroups/myDVresourceGroup/providers/Microsoft.Compute/virtualMachines/myfirstVMtemplate-1"
+                          },
+                          "name": "Disk Read Bytes",
+                          "aggregationType": 1,
+                          "metricVisualization": {
+                            "resourceDisplayName": "myfirstvmtemplate-1"
+                          }
+                        },
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/d54aa1f8-fb70-44e1-bd0c-d18417c39a0e/resourceGroups/myDVresourceGroup/providers/Microsoft.Compute/virtualMachines/myfirstVMtemplate-1"
+                          },
+                          "name": "Disk Write Bytes",
+                          "aggregationType": 1,
+                          "metricVisualization": {
+                            "resourceDisplayName": "myfirstvmtemplate-1"
+                          }
+                        }
+                      ],
+                      "title": "Disk bytes (total)",
+                      "titleKind": 2,
+                      "visualization": {
+                        "chartType": 2,
+                        "disablePinning": true
+                      },
+                      "openBladeOnClick": {
+                        "openBlade": true
+                      }
+                    }
+                  }
+                }
+              },
+              "filters": {
+                "MsPortalFx_TimeRange": {
+                  "model": {
+                    "format": "local",
+                    "granularity": "auto",
+                    "relative": "1440m"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "position": {
+              "x": 11,
+              "y": 0,
+              "colSpan": 6,
+              "rowSpan": 4
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "options",
+                  "isOptional": true
+                },
+                {
+                  "name": "sharedTimeRange",
+                  "isOptional": true
+                }
+              ],
+              "type": "Extension/HubsExtension/PartType/MonitorChartPart",
+              "settings": {
+                "content": {
+                  "options": {
+                    "chart": {
+                      "metrics": [
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/d54aa1f8-fb70-44e1-bd0c-d18417c39a0e/resourceGroups/myDVresourceGroup/providers/Microsoft.Storage/storageAccounts/strgccnt1x55toyozvossg"
+                          },
+                          "name": "Availability",
+                          "aggregationType": 4,
+                          "namespace": "microsoft.storage/storageaccounts",
+                          "metricVisualization": {
+                            "displayName": "Availability"
+                          }
+                        },
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/d54aa1f8-fb70-44e1-bd0c-d18417c39a0e/resourceGroups/myDVresourceGroup/providers/Microsoft.Storage/storageAccounts/strgccnt1x55toyozvossg"
+                          },
+                          "name": "Egress",
+                          "aggregationType": 1,
+                          "namespace": "microsoft.storage/storageaccounts",
+                          "metricVisualization": {
+                            "displayName": "Egress"
+                          }
+                        },
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/d54aa1f8-fb70-44e1-bd0c-d18417c39a0e/resourceGroups/myDVresourceGroup/providers/Microsoft.Storage/storageAccounts/strgccnt1x55toyozvossg"
+                          },
+                          "name": "Ingress",
+                          "aggregationType": 1,
+                          "namespace": "microsoft.storage/storageaccounts",
+                          "metricVisualization": {
+                            "displayName": "Ingress"
+                          }
+                        },
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/d54aa1f8-fb70-44e1-bd0c-d18417c39a0e/resourceGroups/myDVresourceGroup/providers/Microsoft.Storage/storageAccounts/strgccnt1x55toyozvossg"
+                          },
+                          "name": "SuccessE2ELatency",
+                          "aggregationType": 4,
+                          "namespace": "microsoft.storage/storageaccounts",
+                          "metricVisualization": {
+                            "displayName": "Success E2E Latency"
+                          }
+                        }
+                      ],
+                      "title": "Avg Availability, Sum Egress, and 2 other metrics for strgccnt1x55toyozvossg",
+                      "titleKind": 1,
+                      "visualization": {
+                        "chartType": 2,
+                        "legendVisualization": {
+                          "isVisible": true,
+                          "position": 2,
+                          "hideHoverCard": false,
+                          "hideLabelNames": true
+                        },
+                        "axisVisualization": {
+                          "x": {
+                            "isVisible": true,
+                            "axisType": 2
+                          },
+                          "y": {
+                            "isVisible": true,
+                            "axisType": 1
+                          }
+                        },
+                        "disablePinning": true
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          {
+            "position": {
+              "x": 0,
+              "y": 3,
+              "colSpan": 5,
+              "rowSpan": 3
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "options",
+                  "value": {
+                    "chart": {
+                      "metrics": [
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/d54aa1f8-fb70-44e1-bd0c-d18417c39a0e/resourceGroups/myDVresourceGroup/providers/Microsoft.Compute/virtualMachines/myfirstVMtemplate-1"
+                          },
+                          "name": "Disk Read Operations/Sec",
+                          "aggregationType": 4,
+                          "metricVisualization": {
+                            "displayName": "Disk Read Operations/Sec",
+                            "resourceDisplayName": "myfirstvmtemplate-1"
+                          }
+                        },
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/d54aa1f8-fb70-44e1-bd0c-d18417c39a0e/resourceGroups/myDVresourceGroup/providers/Microsoft.Compute/virtualMachines/myfirstVMtemplate-1"
+                          },
+                          "name": "Disk Write Operations/Sec",
+                          "aggregationType": 4,
+                          "metricVisualization": {
+                            "displayName": "Disk Write Operations/Sec",
+                            "resourceDisplayName": "myfirstvmtemplate-1"
+                          }
+                        }
+                      ],
+                      "title": "Disk operations/sec (average)",
+                      "titleKind": 2,
+                      "visualization": {
+                        "chartType": 2
+                      },
+                      "openBladeOnClick": {
+                        "openBlade": true
+                      }
+                    }
+                  },
+                  "isOptional": true
+                },
+                {
+                  "name": "sharedTimeRange",
+                  "isOptional": true
+                }
+              ],
+              "type": "Extension/HubsExtension/PartType/MonitorChartPart",
+              "settings": {
+                "content": {
+                  "options": {
+                    "chart": {
+                      "metrics": [
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/d54aa1f8-fb70-44e1-bd0c-d18417c39a0e/resourceGroups/myDVresourceGroup/providers/Microsoft.Compute/virtualMachines/myfirstVMtemplate-1"
+                          },
+                          "name": "Disk Read Operations/Sec",
+                          "aggregationType": 4,
+                          "metricVisualization": {
+                            "displayName": "Disk Read Operations/Sec",
+                            "resourceDisplayName": "myfirstvmtemplate-1"
+                          }
+                        },
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/d54aa1f8-fb70-44e1-bd0c-d18417c39a0e/resourceGroups/myDVresourceGroup/providers/Microsoft.Compute/virtualMachines/myfirstVMtemplate-1"
+                          },
+                          "name": "Disk Write Operations/Sec",
+                          "aggregationType": 4,
+                          "metricVisualization": {
+                            "displayName": "Disk Write Operations/Sec",
+                            "resourceDisplayName": "myfirstvmtemplate-1"
+                          }
+                        }
+                      ],
+                      "title": "Disk operations/sec (average)",
+                      "titleKind": 2,
+                      "visualization": {
+                        "chartType": 2,
+                        "disablePinning": true
+                      },
+                      "openBladeOnClick": {
+                        "openBlade": true
+                      }
+                    }
+                  }
+                }
+              },
+              "filters": {
+                "MsPortalFx_TimeRange": {
+                  "model": {
+                    "format": "local",
+                    "granularity": "auto",
+                    "relative": "1440m"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "position": {
+              "x": 5,
+              "y": 3,
+              "colSpan": 5,
+              "rowSpan": 3
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "options",
+                  "value": {
+                    "chart": {
+                      "metrics": [
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/d54aa1f8-fb70-44e1-bd0c-d18417c39a0e/resourceGroups/myDVresourceGroup/providers/Microsoft.Compute/virtualMachines/myfirstVMtemplate-1"
+                          },
+                          "name": "Network In Total",
+                          "aggregationType": 1,
+                          "metricVisualization": {
+                            "displayName": "Network In Total",
+                            "resourceDisplayName": "myfirstvmtemplate-1"
+                          }
+                        },
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/d54aa1f8-fb70-44e1-bd0c-d18417c39a0e/resourceGroups/myDVresourceGroup/providers/Microsoft.Compute/virtualMachines/myfirstVMtemplate-1"
+                          },
+                          "name": "Network Out Total",
+                          "aggregationType": 1,
+                          "metricVisualization": {
+                            "displayName": "Network Out Total",
+                            "resourceDisplayName": "myfirstvmtemplate-1"
+                          }
+                        }
+                      ],
+                      "title": "Network (total)",
+                      "titleKind": 2,
+                      "visualization": {
+                        "chartType": 2
+                      },
+                      "openBladeOnClick": {
+                        "openBlade": true
+                      }
+                    }
+                  },
+                  "isOptional": true
+                },
+                {
+                  "name": "sharedTimeRange",
+                  "isOptional": true
+                }
+              ],
+              "type": "Extension/HubsExtension/PartType/MonitorChartPart",
+              "settings": {
+                "content": {
+                  "options": {
+                    "chart": {
+                      "metrics": [
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/d54aa1f8-fb70-44e1-bd0c-d18417c39a0e/resourceGroups/myDVresourceGroup/providers/Microsoft.Compute/virtualMachines/myfirstVMtemplate-1"
+                          },
+                          "name": "Network In Total",
+                          "aggregationType": 1,
+                          "metricVisualization": {
+                            "displayName": "Network In Total",
+                            "resourceDisplayName": "myfirstvmtemplate-1"
+                          }
+                        },
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/d54aa1f8-fb70-44e1-bd0c-d18417c39a0e/resourceGroups/myDVresourceGroup/providers/Microsoft.Compute/virtualMachines/myfirstVMtemplate-1"
+                          },
+                          "name": "Network Out Total",
+                          "aggregationType": 1,
+                          "metricVisualization": {
+                            "displayName": "Network Out Total",
+                            "resourceDisplayName": "myfirstvmtemplate-1"
+                          }
+                        }
+                      ],
+                      "title": "Network (total)",
+                      "titleKind": 2,
+                      "visualization": {
+                        "chartType": 2,
+                        "disablePinning": true
+                      },
+                      "openBladeOnClick": {
+                        "openBlade": true
+                      }
+                    }
+                  }
+                }
+              },
+              "filters": {
+                "MsPortalFx_TimeRange": {
+                  "model": {
+                    "format": "local",
+                    "granularity": "auto",
+                    "relative": "1440m"
+                  }
+                }
+              }
+            }
+          },
+          {
+            "position": {
+              "x": 11,
+              "y": 4,
+              "colSpan": 6,
+              "rowSpan": 4
+            },
+            "metadata": {
+              "inputs": [
+                {
+                  "name": "options",
+                  "isOptional": true
+                },
+                {
+                  "name": "sharedTimeRange",
+                  "isOptional": true
+                }
+              ],
+              "type": "Extension/HubsExtension/PartType/MonitorChartPart",
+              "settings": {
+                "content": {
+                  "options": {
+                    "chart": {
+                      "metrics": [
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/d54aa1f8-fb70-44e1-bd0c-d18417c39a0e/resourceGroups/myDVresourceGroup/providers/Microsoft.Storage/storageAccounts/strgccnt2x55toyozvossg"
+                          },
+                          "name": "Availability",
+                          "aggregationType": 4,
+                          "namespace": "microsoft.storage/storageaccounts",
+                          "metricVisualization": {
+                            "displayName": "Availability"
+                          }
+                        },
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/d54aa1f8-fb70-44e1-bd0c-d18417c39a0e/resourceGroups/myDVresourceGroup/providers/Microsoft.Storage/storageAccounts/strgccnt2x55toyozvossg"
+                          },
+                          "name": "Egress",
+                          "aggregationType": 1,
+                          "namespace": "microsoft.storage/storageaccounts",
+                          "metricVisualization": {
+                            "displayName": "Egress"
+                          }
+                        },
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/d54aa1f8-fb70-44e1-bd0c-d18417c39a0e/resourceGroups/myDVresourceGroup/providers/Microsoft.Storage/storageAccounts/strgccnt2x55toyozvossg"
+                          },
+                          "name": "Ingress",
+                          "aggregationType": 1,
+                          "namespace": "microsoft.storage/storageaccounts",
+                          "metricVisualization": {
+                            "displayName": "Ingress"
+                          }
+                        },
+                        {
+                          "resourceMetadata": {
+                            "id": "/subscriptions/d54aa1f8-fb70-44e1-bd0c-d18417c39a0e/resourceGroups/myDVresourceGroup/providers/Microsoft.Storage/storageAccounts/strgccnt2x55toyozvossg"
+                          },
+                          "name": "SuccessE2ELatency",
+                          "aggregationType": 4,
+                          "namespace": "microsoft.storage/storageaccounts",
+                          "metricVisualization": {
+                            "displayName": "Success E2E Latency"
+                          }
+                        }
+                      ],
+                      "title": "Avg Availability, Sum Egress, and 2 other metrics for strgccnt2x55toyozvossg",
+                      "titleKind": 1,
+                      "visualization": {
+                        "chartType": 2,
+                        "legendVisualization": {
+                          "isVisible": true,
+                          "position": 2,
+                          "hideHoverCard": false,
+                          "hideLabelNames": true
+                        },
+                        "axisVisualization": {
+                          "x": {
+                            "isVisible": true,
+                            "axisType": 2
+                          },
+                          "y": {
+                            "isVisible": true,
+                            "axisType": 1
+                          }
+                        },
+                        "disablePinning": true
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "metadata": {
+      "model": {
+        "timeRange": {
+          "value": {
+            "relative": {
+              "duration": 24,
+              "timeUnit": 1
+            }
+          },
+          "type": "MsPortalFx.Composition.Configuration.ValueTypes.TimeRange"
+        },
+        "filterLocale": {
+          "value": "en-us"
+        },
+        "filters": {
+          "value": {
+            "MsPortalFx_TimeRange": {
+              "model": {
+                "format": "utc",
+                "granularity": "auto",
+                "relative": "24h"
+              },
+              "displayCache": {
+                "name": "UTC Time",
+                "value": "Past 24 hours"
+              },
+              "filteredPartIds": [
+                "StartboardPart-MonitorChartPart-b415d478-3f28-4752-b472-822852db73b3",
+                "StartboardPart-MonitorChartPart-b415d478-3f28-4752-b472-822852db73b5",
+                "StartboardPart-MonitorChartPart-b415d478-3f28-4752-b472-822852db73b7",
+                "StartboardPart-MonitorChartPart-b415d478-3f28-4752-b472-822852db73b9",
+                "StartboardPart-MonitorChartPart-b415d478-3f28-4752-b472-822852db7427",
+                "StartboardPart-MonitorChartPart-b415d478-3f28-4752-b472-822852db7434"
+              ]
+            }
+          }
+        }
+      }
+    }
+  },
+  "name": "vmTemplateMonitor",
+  "type": "Microsoft.Portal/dashboards",
+  "location": "INSERT LOCATION",
+  "tags": {
+    "hidden-title": "vmTemplateMonitor"
+  },
+  "apiVersion": "2022-12-01-preview"
+}

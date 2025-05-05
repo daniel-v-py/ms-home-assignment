@@ -1,0 +1,69 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2019-04-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "location": {
+            "type": "string",
+            "defaultValue":  "[resourceGroup().location]",
+            "metadata": {
+                "description": "Storage Account Location"
+            }
+        },
+        "storageAccountPrefix": {
+            "type": "string"
+        },
+        "storageAccountSKU": {
+            "type": "string"
+        },
+        "storageAccountKind": {
+            "type": "string"
+        },
+        "accountStorageCount": {
+            "type": "int"
+        }
+
+    },
+    "variables": {
+        "uniqueString": "[uniqueString(resourceGroup().id)]"
+    },
+    "resources": [
+      {
+        "type": "Microsoft.Storage/storageAccounts",
+        "apiVersion": "2024-01-01",
+        "name": "[concat(parameters('storageAccountPrefix'), copyIndex(1), variables('uniqueString'))]",
+        "location": "[parameters('location')]",
+        "sku": {
+            "name": "[parameters('storageAccountSKU')]"
+        },
+        "kind": "[parameters('storageAccountKind')]",
+        "properties": {
+            "allowBlobPublicAccess": "false",
+            "cors": {
+                "corsRules": [
+                    {
+                        "allowedOrigins": ["*"],
+                        "allowedMethods": ["GET", "PUT"],
+                        "allowedHeaders": ["*"],
+                        "exposedHeaders": ["*"],
+                        "maxAgeInSeconds": 200
+                    }
+                ]
+            } 
+        },
+        "copy": {
+            "name": "storageAccountLoop",
+            "count": "[parameters('accountStorageCount')]"
+        }
+      }
+    ],
+    "outputs": {
+        "storageAccount1Name": {
+            "type": "string",
+            "value": "[concat(parameters('storageAccountPrefix'), '1', variables('uniqueString'))]"
+        },
+        "storageAccount2Name": {
+            "type": "string",
+            "value": "[concat(parameters('storageAccountPrefix'), '2', variables('uniqueString'))]"
+        }
+    }
+}
